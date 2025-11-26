@@ -38,3 +38,24 @@ export const getdataById=(req,res)=>{
         res.status(504).json({message:"Id not found"})
     }
 }
+export const createProduct=(req,res)=>{
+
+
+    try {
+        const {name,price}=req.body;
+        const newproduct={
+            id:products.length+1,
+            name:name,
+            price:price
+        }
+
+       
+        return res.status(200).json({message:"created success",data:newproduct})
+
+
+        
+    } catch (error) {
+        
+        res.status(504).json({message:"product not found"})
+    }
+}
