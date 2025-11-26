@@ -6,6 +6,7 @@ const products=[
         {id:5,name:"iphone",price:8000}
 ]
 
+//get all data
 export const getdata=(req,res)=>{
     try {
         res.status(200).json({message:"data  retireved success",data:products})
@@ -17,14 +18,18 @@ export const getdata=(req,res)=>{
         res.status(504).json({message:"data not retireved"})
     }
 }
-
+//get by id
 export const getdataById=(req,res)=>{
 
 
     try {
         const productId=req.params.id;
         const idOutput= products.find((ele)=> ele.id == productId)
-        res.status(200).json({message:"data  retireved success",data:idOutput})
+        if(!idOutput){
+            return res.status(404).json({message:"product not found"})
+
+        }
+        return res.status(200).json({message:"data  retireved success",data:idOutput})
 
 
         
